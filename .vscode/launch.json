@@ -10,6 +10,16 @@
             "flutterMode": "debug",
             "request": "launch",
             "deviceId": "c49af9570421"
+        },
+        {
+            "name": "Flutter: Nav",
+            "type": "dart",
+            "flutterMode": "debug",
+            "request": "launch",
+            "args": [
+                "-d",
+                "chrome"
+            ]
         }
     ]
 }
