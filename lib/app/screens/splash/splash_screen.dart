@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projects/app/screens/home_screen/home_screen.dart';
+import 'package:projects/app/screens/auth/login_screen.dart';
 
-class SplashScreenPage extends StatelessWidget {
-  const SplashScreenPage({Key? key}) : super(key: key);
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class SplashScreenPage extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const MyHomePage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
       },
       style: ElevatedButton.styleFrom(primary: Colors.white),
     ));
