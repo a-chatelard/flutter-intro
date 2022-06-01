@@ -1,18 +1,19 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:projects/app/screens/app_routes.dart';
 import 'package:projects/app/screens/calcul_history/calcul_history_screen.dart';
 import 'package:projects/app/screens/scan_facture/scan_facture_screen.dart';
 import 'package:projects/app/widgets/calculator_button.dart';
 import 'package:function_tree/function_tree.dart';
 
-class CalculatorPage extends StatefulWidget {
-  CalculatorPage({Key? key}) : super(key: key);
+class CalculatorScreen extends StatefulWidget {
+  CalculatorScreen({Key? key}) : super(key: key);
 
   @override
-  State<CalculatorPage> createState() => CalculatorPageState();
+  State<CalculatorScreen> createState() => CalculatorScreenState();
 }
 
-class CalculatorPageState extends State<CalculatorPage> {
+class CalculatorScreenState extends State<CalculatorScreen> {
   @override
   void initState() {
     _outlineText = "2 + 2";
@@ -98,12 +99,8 @@ class CalculatorPageState extends State<CalculatorPage> {
             padding: EdgeInsets.only(right: 20),
             child: IconButton(
               icon: Icon(Icons.save, color: Colors.black),
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CalculHistoryScreen()))
-              },
+              onPressed: () =>
+                  {Navigator.pushNamed(context, calculHistoryScreen)},
             ),
           )
         ],

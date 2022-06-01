@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projects/app/models/recent_calcul_model.dart';
+import 'package:projects/app/screens/app_routes.dart';
+import 'package:projects/app/screens/calcul_history/calcul_history_details_screen.dart';
+import 'package:projects/app/screens/calculator/calculator_screen.dart';
 import 'package:projects/app/widgets/depense_row.dart';
 
 class CalculHistoryScreen extends StatelessWidget {
@@ -33,7 +36,8 @@ class CalculHistoryScreen extends StatelessWidget {
               icon: Image.asset(
                 'assets/images/splashIcon.png',
               ),
-              onPressed: () => {Navigator.pop(context)},
+              onPressed: () =>
+                  {Navigator.pushReplacementNamed(context, homeScreen)},
             ),
           )
         ],
@@ -44,7 +48,13 @@ class CalculHistoryScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(top: 50, left: 30),
-            child: DepenseWidget(item: _items[index]),
+            child: GestureDetector(
+              child: DepenseWidget(item: _items[index]),
+              onTap: () {
+                Navigator.of(context).pushNamed(calculHistoryDetailsScreen,
+                    arguments: _items[index]);
+              },
+            ),
           );
         },
       ),

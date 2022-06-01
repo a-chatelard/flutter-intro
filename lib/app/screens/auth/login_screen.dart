@@ -10,16 +10,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   AutovalidateMode _autovalidate = AutovalidateMode.disabled;
+  bool isObscure = true;
 
-  void _onSubmit() {
+  _onSubmit() {
     if (_formKey.currentState!.validate()) {
-      if (_usernameController.text == "admin@admin.admin" &&
+      if (_emailController.text == "admin@admin.admin" &&
           _passwordController.text == "password") {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CalculatorPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CalculatorScreen()));
       }
     } else {}
     setState(() {
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Material(
       child: Center(
         child: Form(
+          autovalidateMode: _autovalidate,
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextFormField(
                       decoration: InputDecoration(
                           icon: Icon(Icons.person), labelText: "Email"),
-                      controller: _usernameController,
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return "Field cannot be empty.";
@@ -62,9 +65,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: isObscure,
                       decoration: InputDecoration(
-                          icon: Icon(Icons.lock), labelText: "Password"),
+                          icon: Icon(Icons.lock),
+                          labelText: "Password",
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isObscure = !isObscure;
+                                });
+                              },
+                              icon: isObscure
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off))),
                       controller: _passwordController,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
@@ -77,6 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    fixedSize: Size.fromWidth(screenWidth / 2)),
                 child: Text(
                   "Login",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),

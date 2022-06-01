@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/app/screens/auth/login_screen.dart';
+import 'package:projects/app/screens/app_routes.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -30,8 +30,7 @@ class SplashScreen extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+        Navigator.pushReplacementNamed(context, homeScreen);
       },
       style: ElevatedButton.styleFrom(primary: Colors.white),
     ));
